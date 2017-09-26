@@ -19,7 +19,7 @@ def validate_basic(entry):
 		return True
 		
 def validate_password(entry1, entry2):
-	if validate_basic(entry1):
+	if validate_basic(entry1) == True:
 		if entry1 != entry2:
 			return "Passwords do not match."
 		else:
@@ -28,7 +28,7 @@ def validate_password(entry1, entry2):
 		return validate_basic(entry1)
 		
 def validate_email(entry):
-	if validate_basic(entry):
+	if validate_basic(entry) == True:
 		if ('@' in entry) and ('.' in entry):
 			return True
 		else:
