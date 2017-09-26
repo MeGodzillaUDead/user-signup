@@ -7,6 +7,6 @@ app.config['DEBUG'] = True
 
 @app.route("/")
 def index():
-	return "Under Construction..."
+	return render_template('signup-form.html', title='New User Sign Up')
 	
 app.run()
