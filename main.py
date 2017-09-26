@@ -48,6 +48,18 @@ def welcome():
 	cpw = request.form['confirm-password']
 	email = request.form['email']
 	
-	return render_template('welcome.html', title='Landing Page', name=user_name)
+	# get validation True or error message for each field
+	uname_error = validate_basic(user_name)
+	pw_error = validate_password(pw, cpw)
+	if email == "":
+		email_error = True
+	else:
+		email_error = validate_email(email)
+	
+	if uname_error == pw_error == email_error == True:
+	# landing page render statement
+		return render_template('welcome.html', title='Landing Page', name=user_name)
+	else:
+		return redirect("/?ue={0}&pe={1}&ee={2}".format(uname_error, pw_error, email_error))
 		
 app.run()
