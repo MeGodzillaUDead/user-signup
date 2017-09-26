@@ -4,18 +4,18 @@
 		<form action="/welcome" method="post">
 			<label for="user-name">User Name:</label>
 			<input name="user-name" type="text" />
-			<span class="error">{{ue}}</span>
+			{% if ue != "True" and ue != "None" %}<span class="error">{{ue}}</span>{% endif %}
 			<br>
 			<label for="password">Password:</label>
 			<input name="password" type="password" />
-			<span class="error">{{pe}}</span>
+			{% if pe != "True" and pe != "None" %}<span class="error">{{pe}}</span>{% endif %}
 			<br>
 			<label for="confirm-password">Confirm Password:</label>
 			<input name="confirm-password" type="password" />
 			<br>
 			<label for="email">E-Mail (Optional):</label>
 			<input name="email" type="text" />
-			<span class="error">{{ee}}</span>
+			{% if ee != "True" and ee != "None" %}<span class="error">{{ee}}</span>{% endif %}
 			<br>
 			<input type="submit" value="Sign Up">
 		</form>

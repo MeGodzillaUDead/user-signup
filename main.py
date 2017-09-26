@@ -38,7 +38,11 @@ def validate_email(entry):
 
 @app.route("/")
 def index():
-	return render_template('signup-form.html', title='New User Sign Up')
+	return render_template('signup-form.html', title='New User Sign Up',
+		ue = request.args.get('ue'),
+		pe = request.args.get('pe'),
+		ee = request.args.get('ee')
+		)
 
 @app.route("/welcome", methods=['POST'])
 def welcome():
