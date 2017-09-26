@@ -41,7 +41,8 @@ def index():
 	ue = request.args.get('ue')
 	pe = request.args.get('pe')
 	ee = request.args.get('ee')
-	errors = (ue, pe, ee)
+	n_val = request.args.get('n_val')
+	e_val = request.args.get('e_val')
 
 # wtf doesn't this for loop work?!?!	
 # 	for item in errors:
@@ -54,11 +55,17 @@ def index():
 		pe = ""
 	if ee == None:
 		ee = ""
+	if n_val == None or ue not in ["True", ""]:
+		n_val = ""
+	if e_val == None or ee not in ["True", ""]:
+		e_val = ""
 	
 	return render_template('signup-form.html', title='New User Sign Up',
 		ue = ue,
 		pe = pe,
-		ee = ee
+		ee = ee,
+		nv = n_val,
+		ev = e_val,
 		)
 
 @app.route("/welcome", methods=['POST'])
@@ -81,6 +88,10 @@ def welcome():
 	# landing page render statement
 		return render_template('welcome.html', title='Landing Page', name=user_name)
 	else:
-		return redirect("/?ue={0}&pe={1}&ee={2}".format(uname_error, pw_error, email_error))
+		return redirect("/?ue={0}&pe={1}&ee={2}&n_val={3}&e_val={4}".format(uname_error, 
+		pw_error, 
+		email_error, 
+		user_name, 
+		email))
 		
 app.run()
