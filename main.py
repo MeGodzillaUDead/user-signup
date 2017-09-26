@@ -39,5 +39,15 @@ def validate_email(entry):
 @app.route("/")
 def index():
 	return render_template('signup-form.html', title='New User Sign Up')
+
+@app.route("/welcome", methods=['POST'])
+def welcome():
+	# get the data from the sign up form to perform validation
+	user_name = request.form['user-name']
+	pw = request.form['password']
+	cpw = request.form['confirm-password']
+	email = request.form['email']
 	
+	return render_template('welcome.html', title='Landing Page', name=user_name)
+		
 app.run()
