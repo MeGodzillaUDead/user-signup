@@ -38,10 +38,27 @@ def validate_email(entry):
 
 @app.route("/")
 def index():
+	ue = request.args.get('ue')
+	pe = request.args.get('pe')
+	ee = request.args.get('ee')
+	errors = (ue, pe, ee)
+
+# wtf doesn't this for loop work?!?!	
+# 	for item in errors:
+#		if item == None:
+#			item = ""
+
+	if ue == None:
+		ue = ""
+	if pe == None:
+		pe = ""
+	if ee == None:
+		ee = ""
+	
 	return render_template('signup-form.html', title='New User Sign Up',
-		ue = request.args.get('ue'),
-		pe = request.args.get('pe'),
-		ee = request.args.get('ee')
+		ue = ue,
+		pe = pe,
+		ee = ee
 		)
 
 @app.route("/welcome", methods=['POST'])
